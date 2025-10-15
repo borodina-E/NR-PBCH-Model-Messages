@@ -20,6 +20,15 @@ add_executable(Complex Complex.cpp
         main.cpp
         perDecoder.cpp
         perDecoder.h
+        polarCoding.cpp
+        PolarCodingInterleaverPattern.cpp
+        PolarCodingInterleaverPattern.h
+        PolarSequenceReliability.cpp
+        kron.cpp
+        kron.h
+        MatrixVecMult.cpp
+        MatrixVecMult.h
+        polarCoding.h
 )
 
 include_directories(
