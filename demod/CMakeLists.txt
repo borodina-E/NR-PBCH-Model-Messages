@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 # Поиск пакета GoogleTest
 find_package(GTest REQUIRED)
+find_package(Eigen3 REQUIRED)
 
 # Включение тестирования
 enable_testing()
@@ -20,9 +21,13 @@ add_executable(qpsk_demodulate main.cpp
         dlsch_info.cpp
         dlsch_info.h
         segmented.cpp
+        attachPbitsMatrix.cpp
 
 )
 
+include_directories(
+        ${EIGEN3_INCLUDE_DIRS}
+)
 # Отдельный исполняемый файл для тестов 1   qpskDemodulation
 add_executable(qpsk_tests test_qpskDemod.cpp
         qpskDemodulator.cpp
@@ -47,6 +52,10 @@ add_executable(parity_tests test_attachParity.cpp
         attachParityBits.cpp
         verifyParityBits.cpp
 
+)
+# линковка с GoogleTest (подключение) 0
+target_link_libraries(qpsk_demodulate
+        Eigen3::Eigen
 )
 
 # линковка с GoogleTest (подключение) 1

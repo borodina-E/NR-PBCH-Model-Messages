@@ -1,14 +1,15 @@
 #ifndef QPSK_DEMODULATE_DLSCH_INFO_H
 #define QPSK_DEMODULATE_DLSCH_INFO_H
 
-include<string>;
-include<vector>;
+#include<string>
+#include<vector>
+#include <Eigen/Dense>
 
 // Структура для информации о базовом графе
 struct BgInfo {
     std::string CRC;        // crc
     int L;                  // pow crc
-    ing BGN;                // base graph number
+    int BGN;                // base graph number
     int B;                  // length of transport block after CRC attachment
 };
 
@@ -43,8 +44,14 @@ CbInfo getCbsInfo(int tbs, double R);
 
 DlschInfo dlsch_info(int B, int bgn);
 
-std::vector<int> segmented(std::vector<int> data, int F, int C)
 
+// segmented
+// MatrixXi - матрица целых чисел (динамического размера)
+typedef Eigen::Matrix<int, Eigen::Dynamic, Eigen::Dynamic> MatrixXi;
+
+MatrixXi attachPbitsMatrix(MatrixXi cb, std::string crc_type, bool attach_zeros);
+
+MatrixXi segmented(std::vector<int> blk, int C, int CBZ, int F);
 
 #endif //QPSK_DEMODULATE_DLSCH_INFO_H
 

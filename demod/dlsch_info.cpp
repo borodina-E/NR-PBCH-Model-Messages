@@ -10,7 +10,7 @@ DlschInfo dlsch_info(int tbs, double R) {
     BgInfo bginfo = getBgnInfo(tbs, R);
 
     // Get code block segment information
-    CbInfo cbinfo = getCbsInfo(B, bgn);
+    CbInfo cbinfo = getCbsInfo(bginfo.B, bginfo.BGN);
 
     // Get number of bits after LDPC encoding
     int N;
