@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DeveloperToolsToolWindowSettingsV1" lastSelectedContentNodeId="units-converter">
+    <developerToolsConfigurations>
+      <developerToolConfiguration developerToolId="units-converter" id="e382fdd5-efb0-472b-9a8d-258aefedc403" name="Workbench">
+        <properties>
+          <property key="lastSelectedUnitConverterIndex" type="CONFIGURATION" value="kotlin.Int|3" />
+        </properties>
+      </developerToolConfiguration>
+    </developerToolsConfigurations>
+  </component>
+</project>
