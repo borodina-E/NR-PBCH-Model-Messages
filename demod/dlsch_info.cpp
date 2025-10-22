@@ -30,6 +30,7 @@ DlschInfo dlsch_info(int tbs, double R) {
     info.Zc = cbinfo.Zc;
     info.K = cbinfo.K;
     info.N = N;
+    info.CBZ = cbinfo.cbz;
 
     return info;
 }
@@ -80,25 +81,28 @@ CbInfo getCbsInfo(int B, int bgn) {
     }
 
     // Get number of code blocks and length of CB-CRC coded block
-    int L;
+    int L; // for crc
     int C;
     int Bd;
 
     if (B <= Kcb) {
         L = 0;
-        C = 1;
+        C = 2;
         Bd = B;
     } else {
         L = 24;                 // Length of the CRC bits attached to each code block
-        C = static_cast<int>(std::ceil(B / static_cast<double>(Kcb - L)));
+        //C = static_cast<int>(std::ceil(B / static_cast<double>(Kcb - L)));
+        C = int(std::ceil(B / (Kcb - L)));
         Bd = B + C * L;
     }
 
     // Obtain the number of bits per code block (excluding CB-CRC bits)
     int cbz = static_cast<int>(std::ceil(static_cast<double>(B) / C));
+    //int cbz = std::ceil(B / C);
 
     // Get number of bits in each code block (excluding filler bits);
     int Kd = static_cast<int>(std::ceil(static_cast<double>(Bd) / C));
+    //int Kd = std::ceil(Bd / C);
 
     // Find the minimum value of Z in all sets of lifting sizes in 38.212
     // Table 5.3.2-1, denoted as Zc, such that Kb*Zc>=Kd

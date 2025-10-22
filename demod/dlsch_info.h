@@ -35,14 +35,15 @@ struct DlschInfo {
     int Zc;
     int K;
     int N;
+    int CBZ;
 };
 
 // Основные функции
-BgInfo getBgnInfo(int tbs, double R);
+BgInfo getBgnInfo(int A, double R);
 
-CbInfo getCbsInfo(int tbs, double R);
+CbInfo getCbsInfo(int B, int bgn);
 
-DlschInfo dlsch_info(int B, int bgn);
+DlschInfo dlsch_info(int tbs, double R);
 
 
 // segmented
@@ -52,6 +53,7 @@ typedef Eigen::Matrix<int, Eigen::Dynamic, Eigen::Dynamic> MatrixXi;
 MatrixXi attachPbitsMatrix(MatrixXi cb, std::string crc_type, bool attach_zeros);
 
 MatrixXi segmented(std::vector<int> blk, int C, int CBZ, int F);
+//MatrixXi segmented(std::vector<int> blk, DlschInfo info);
 
 #endif //QPSK_DEMODULATE_DLSCH_INFO_H
 
