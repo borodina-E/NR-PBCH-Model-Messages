@@ -4,6 +4,6 @@
 #include <vector>
 using namespace std;
 
-extern const vector<int> P;
+extern const vector<int> PCIP;
 
 #endif

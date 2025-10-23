@@ -4,7 +4,7 @@
 using namespace std;
 
 template <typename T>
-vector<vector<T>> kron(vector<vector<T>>& M1, vector<vector<T>>& M2)
+vector<vector<T>> kron(const vector<vector<T>>& M1, const vector<vector<T>>& M2)
 {
 	int m = M1.size();
 	int n = M1[0].size();
