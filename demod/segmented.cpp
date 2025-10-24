@@ -13,7 +13,7 @@ MatrixXi segmented(std::vector<int> blk, int C, int CBZ, int F) {
     // C - Number of code block segments
 
     int blkLen = blk.size();
-    std::string crc_type = "crc24b"; // в сегментировании всегда тип crc 24b или это выбрать свой?
+    std::string crc_type = "crc24b"; // в сегментировании всегда тип crc 24b. 38.212 5.2.2
     bool attach_zeros = true;
 
     if (C == 1) {

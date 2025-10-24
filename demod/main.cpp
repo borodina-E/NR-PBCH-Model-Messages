@@ -30,13 +30,18 @@ int main() {
     std::vector<int> symbols = qpskDemodulator(comp_ampl);
     std::vector<int> scrambling_bits = scrambling(codeword);
     std::vector<int> data = verifyParityBits(parity_bits, crc_type);
-    int len_data = data.size();
+    int len_data = bitstream.size();
 
     DlschInfo info_ldpc;
     info_ldpc = dlsch_info(len_data, R);
     //info_ldpc.C = 2;
-    // стоит ли передавать целую структуру в виде парометра или так хорошо?
-    MatrixXi segment_bits = segmented(data, info_ldpc.C, info_ldpc.CBZ, info_ldpc.F);
+    // стоит ли передавать целую структуру в виде параметра или так хорошо?
+
+    int bklen = bitstream.size(); // откуда то мы знаем длину - разобраться
+    MatrixXi segment_bits = segmented(parity_bits, info_ldpc.C, info_ldpc.CBZ, info_ldpc.F);
+    std::vector<int> desegmented_bits = desegmented(segment_bits, info_ldpc.C, bklen + info_ldpc.L,
+                                                    info_ldpc.F); //decoded, bgn, trbLEN + info.L
+    std::vector<int> verify_bits = verifyParityBits(desegmented_bits, crc_type);
 
 
     // нужно desegmentation. После можно сделать юнит тесты? Какие? Потом ldpc

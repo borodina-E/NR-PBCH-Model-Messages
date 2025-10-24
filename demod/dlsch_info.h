@@ -53,7 +53,10 @@ typedef Eigen::Matrix<int, Eigen::Dynamic, Eigen::Dynamic> MatrixXi;
 MatrixXi attachPbitsMatrix(MatrixXi cb, std::string crc_type, bool attach_zeros);
 
 MatrixXi segmented(std::vector<int> blk, int C, int CBZ, int F);
-//MatrixXi segmented(std::vector<int> blk, DlschInfo info);
+
+std::vector<int> desegmented(MatrixXi blk, int C, int bklen, int F);
+
+std::vector<int> verifyPbitsMatrix(MatrixXi cb, std::string crc_type);
 
 #endif //QPSK_DEMODULATE_DLSCH_INFO_H
 

@@ -22,6 +22,8 @@ add_executable(qpsk_demodulate main.cpp
         dlsch_info.h
         segmented.cpp
         attachPbitsMatrix.cpp
+        desegmented.cpp
+        verifyPbitsMatrix.cpp
 
 )
 
@@ -53,10 +55,24 @@ add_executable(parity_tests test_attachParity.cpp
         verifyParityBits.cpp
 
 )
+
+# Отдельный исполняемый файл для тестов 5 Segmented
+add_executable(segmented_tests test_segment.cpp
+        segmented.cpp
+        desegmented.cpp
+        attachParityBits.cpp
+        dlsch_info.cpp
+        attachPbitsMatrix.cpp
+        verifyPbitsMatrix.cpp
+        verifyParityBits.cpp
+
+)
+
 # линковка с GoogleTest (подключение) 0
 target_link_libraries(qpsk_demodulate
         Eigen3::Eigen
 )
+
 
 # линковка с GoogleTest (подключение) 1
 target_link_libraries(qpsk_tests
@@ -104,3 +120,14 @@ target_link_libraries(parity_tests
 # Автоматическое обнаружение тестов 4
 include(GoogleTest)
 gtest_discover_tests(parity_tests)
+
+# линковка с GoogleTest (подключение) 5
+target_link_libraries(segmented_tests
+        GTest::gtest
+        GTest::gtest_main
+        pthread
+)
+
+# Автоматическое обнаружение тестов 5
+include(GoogleTest)
+gtest_discover_tests(segmented_tests)

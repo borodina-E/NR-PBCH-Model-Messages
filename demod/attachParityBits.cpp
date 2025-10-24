@@ -80,7 +80,7 @@ std::vector<int> attachParityBits(std::vector<int> bitstream, std::string crc_ty
     std::vector<int> data_with_crc;
     data_with_crc.reserve(len_bits + L); // указываем сколько будет храниться элементов, резервируем место
 
-    // Добавляем данные (первые L бит) тк входная последовательность была изменина
+    // Добавляем данные (первые L бит) тк входная последовательность была изменена
     for (int i = 0; i < len_bits; i++) {
         data_with_crc.push_back(bitstream[i]);
     }
